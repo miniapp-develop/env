@@ -1,0 +1,26 @@
+{
+  "name": "@mini-dev/context",
+  "version": "0.0.1",
+  "description": "miniapp context config",
+  "miniprogram": "libs",
+  "main": "libs/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:miniapp-develop/context.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miniapp-develop/context"
+  },
+  "homepage": "https://github.com/miniapp-develop/context",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "keywords": [
+    "miniapp"
+  ],
+  "author": "xesam",
+  "license": "ISC"
+}
