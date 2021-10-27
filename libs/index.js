@@ -31,14 +31,23 @@ function _attr(env, arg1, arg2) {
     }
 }
 
+let __env = miniProgram.envVersion;
+
 module.exports = {
+    get env() {
+        return __env;
+    },
+    set env(value) {
+        __env = value;
+        return __env;
+    },
     get miniProgram() {
         return miniProgram;
     },
     get plugin() {
         return plugin;
     },
-    get(key, env = miniProgram.envVersion) {
+    get(key, env = this.env) {
         return this[env].apply(this, Array.prototype.slice.call(arguments, 0, 1));
     },
     set(key, value, env = miniProgram.envVersion) {
