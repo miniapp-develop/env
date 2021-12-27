@@ -1,31 +1,31 @@
-const context = require('../../libs/index');
+const env = require('../../libs/index');
 
 Page({
     data: {},
     onLoad(query) {
-        console.log(context.miniProgram);
-        console.log(context.plugin);
+        console.log(env.miniProgram);
+        console.log(env.plugin);
 
-        context.develop('baseUrl', 'https://dev.api.demo.com');
-        context.develop('debug', false);
-        context.trial('baseUrl', 'https://trial.api.demo.com');
-        context.release('baseUrl', 'https://api.demo.com');
+        env.develop('baseUrl', 'https://dev.api.demo.com');
+        env.develop('debug', false);
+        env.trial('baseUrl', 'https://trial.api.demo.com');
+        env.release('baseUrl', 'https://api.demo.com');
 
-        console.log(context.develop('baseUrl')); // 'https://dev.api.demo.com'
-        console.log(context.trial('baseUrl')); // 'https://trial.api.demo.com'
-        console.log(context.release('baseUrl')); // 'https://api.api.demo.com'
+        console.log(env.develop('baseUrl')); // 'https://dev.api.demo.com'
+        console.log(env.trial('baseUrl')); // 'https://trial.api.demo.com'
+        console.log(env.release('baseUrl')); // 'https://api.api.demo.com'
 
-        console.log(context.get());//{baseUrl: "https://dev.api.demo.com",debug: false}
-        console.log(context.get('baseUrl')); // depends on env
-        console.log(context.get('baseUrl', 'develop'));// 'https://dev.api.demo.com'
-        console.log(context.get('baseUrl', 'trial'));// 'https://trial.api.demo.com'
-        console.log(context.get('baseUrl', 'release')); // 'https://api.api.demo.com'
+        console.log(env.get());//{baseUrl: "https://dev.api.demo.com",debug: false}
+        console.log(env.get('baseUrl')); // depends on env
+        console.log(env.get('baseUrl', 'develop'));// 'https://dev.api.demo.com'
+        console.log(env.get('baseUrl', 'trial'));// 'https://trial.api.demo.com'
+        console.log(env.get('baseUrl', 'release')); // 'https://api.api.demo.com'
 
-        context.env = 'develop';
-        console.log(context.get('baseUrl'));// 'https://dev.api.demo.com'
-        context.env = 'trial';
-        console.log(context.get('baseUrl'));// 'https://trial.api.demo.com'
-        context.env = 'release';
-        console.log(context.get('baseUrl')); // 'https://api.api.demo.com'
+        env.current = 'develop';
+        console.log(env.get('baseUrl'));// 'https://dev.api.demo.com'
+        env.current = 'trial';
+        console.log(env.get('baseUrl'));// 'https://trial.api.demo.com'
+        env.current = 'release';
+        console.log(env.get('baseUrl')); // 'https://api.api.demo.com'
     }
 });

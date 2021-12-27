@@ -44,7 +44,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.2.2",
   "appid": "wx132bb522ad967270",
-  "projectname": "miniapp-context",
+  "projectname": "miniapp-env",
   "debugOptions": {
     "hidedInDevtools": []
   },

@@ -34,10 +34,10 @@ function _attr(env, arg1, arg2) {
 let __env = miniProgram.envVersion;
 
 module.exports = {
-    get env() {
+    get current() {
         return __env;
     },
-    set env(value) {
+    set current(value) {
         __env = value;
         return __env;
     },
@@ -47,10 +47,10 @@ module.exports = {
     get plugin() {
         return plugin;
     },
-    get(key, env = this.env) {
+    get(key, env = this.current) {
         return this[env].apply(this, Array.prototype.slice.call(arguments, 0, 1));
     },
-    set(key, value, env = miniProgram.envVersion) {
+    set(key, value, env = this.current) {
         return _attr.call(this, env, ...arguments);
     },
     [DEV]() {
