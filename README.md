@@ -1,5 +1,7 @@
 # miniapp env config
 
+一个简单的小程序环境变量配置管理。
+
 ## usage
 
 ```javascript
@@ -25,9 +27,3 @@
     env.current = 'release';
     console.log(env.get('baseUrl')); // 'https://api.api.demo.com'
 ```
-
-## changelog
-
-### 2021.10.21
-
-1. init

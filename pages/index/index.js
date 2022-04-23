@@ -7,7 +7,7 @@ Page({
         console.log(env.plugin);
 
         env.develop('baseUrl', 'https://dev.api.demo.com');
-        env.develop('debug', false);
+        env.set('debug', false, 'develop');
         env.trial('baseUrl', 'https://trial.api.demo.com');
         env.release('baseUrl', 'https://api.demo.com');
 
