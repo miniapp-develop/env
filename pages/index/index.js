@@ -27,5 +27,12 @@ Page({
         console.log(env.get('baseUrl'));// 'https://trial.api.demo.com'
         env.current = 'release';
         console.log(env.get('baseUrl')); // 'https://api.api.demo.com'
+    },
+
+    onTapEnv(e) {
+        env.current = e.target.dataset.env;
+        console.log(env.current);
+        console.log(env.get());
+        console.log(env.get('baseUrl'));
     }
 });
