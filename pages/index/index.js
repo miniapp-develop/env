@@ -5,6 +5,7 @@ Page({
     onLoad(query) {
         console.log(env.miniProgram);
         console.log(env.plugin);
+        console.log(env.current);
 
         env.develop('baseUrl', 'https://dev.api.demo.com');
         env.set('debug', false, 'develop');

@@ -1,4 +1,9 @@
+const env = require('./libs/index');
+
 App({
-    onLaunch: function () {
+    onLaunch(opt) {
+        if (opt.query.env) {
+            env.current = opt.query.env;
+        }
     }
 })
