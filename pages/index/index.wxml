@@ -1,5 +1,7 @@
 <view>
-    <button bind:tap="onTapEnv" data-env="develop">切换到开发环境(develop)</button>
-    <button bind:tap="onTapEnv" data-env="trial">切换到体验环境(trial)</button>
-    <button bind:tap="onTapEnv" data-env="release">切换到正式环境(release)</button>
+    <button type="primary" bind:tap="onTapInspect" data-env="develop">查看当前环境</button>
+    <button type="primary" bind:tap="onTapEnv" data-env="develop">切换到开发环境(develop)</button>
+    <button type="primary" bind:tap="onTapEnv" data-env="trial">切换到体验环境(trial)</button>
+    <button type="primary" bind:tap="onTapEnv" data-env="release">切换到正式环境(release)</button>
+    <button type="primary" bind:tap="onTapNewEnv" data-env="release">创建新的环境(test)</button>
 </view>

@@ -12,11 +12,7 @@ const DEV = 'develop';
 const TRIAL = 'trial';
 const RELEASE = 'release';
 
-let CTX = {
-    [DEV]: {},
-    [TRIAL]: {},
-    [RELEASE]: {},
-};
+let CTX = {};
 
 function _attr(env, arg1, arg2) {
     if (arguments.length === 0) {
@@ -33,7 +29,7 @@ function _attr(env, arg1, arg2) {
 
 let __env = miniProgram.envVersion;
 
-module.exports = {
+const defaultEnv = {
     get current() {
         return __env;
     },
@@ -47,19 +43,30 @@ module.exports = {
     get plugin() {
         return plugin;
     },
+    register(envName) {
+        if (CTX[envName]) {
+            console.warn(`env:${envName} already exists!`)
+            return this;
+        }
+        CTX[envName] = {};
+        this[envName] = function () {
+            return _attr.call(this, envName, ...arguments);
+        }
+        return this;
+    },
     get(key, env = this.current) {
         return this[env].apply(this, Array.prototype.slice.call(arguments, 0, 1));
     },
     set(key, value, env = this.current) {
         return _attr.call(this, env, ...arguments);
     },
-    [DEV]() {
-        return _attr.call(this, DEV, ...arguments);
-    },
-    [TRIAL]() {
-        return _attr.call(this, TRIAL, ...arguments);
-    },
-    [RELEASE]() {
-        return _attr.call(this, RELEASE, ...arguments);
+    initApp(opt) {
+        if (opt.query.env) {
+            this.current = opt.query.env;
+        }
     }
 };
+
+defaultEnv.register(DEV).register(TRIAL).register(RELEASE);
+
+module.exports = defaultEnv;
