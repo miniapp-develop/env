@@ -1,6 +1,6 @@
 {
   "name": "@mini-dev/env",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "miniapp env config",
   "miniprogram": "libs",
   "main": "libs/index.js",

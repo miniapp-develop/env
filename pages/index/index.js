@@ -16,6 +16,7 @@ Page({
 
         console.log(env.get('baseUrl', 'develop'));// 'https://dev.api.demo.com'
         console.log(env.get('baseUrl', 'trial'));// 'https://trial.api.demo.com'
+        env.set('baseUrl', 'https://new_api.demo.com', 'release');
         console.log(env.get('baseUrl', 'release')); // 'https://api.api.demo.com'
         this.handleInspect();
     },

@@ -1,16 +1,16 @@
-const {miniProgram, plugin = {}} = wx.getAccountInfoSync();
-if (!miniProgram.envVersion) {
-    if (typeof __wxConfig === 'object') {
-        miniProgram.envVersion = __wxConfig.envVersion;
-    } else {
-        console.warn('__wxConfig is unknown');
-        miniProgram.envVersion = 'unknown';
-    }
-}
-
 const DEV = 'develop';
 const TRIAL = 'trial';
 const RELEASE = 'release';
+
+const {miniProgram, plugin = {}} = wx.getAccountInfoSync();
+if (!miniProgram.envVersion) {
+    if (typeof __wxConfig === 'object') {
+        miniProgram.envVersion = __wxConfig.envVersion || RELEASE;
+    } else {
+        console.warn('__wxConfig is unknown');
+        miniProgram.envVersion = RELEASE;
+    }
+}
 
 let CTX = {};
 
@@ -60,7 +60,10 @@ const defaultEnv = {
     set(key, value, env = this.current) {
         return _attr.call(this, env, ...arguments);
     },
-    initApp(opt) {
+    initApp(opt = {}) {
+        if (!opt.query) {
+            return
+        }
         if (opt.query.env) {
             this.current = opt.query.env;
         }
