@@ -70,3 +70,13 @@ App({
     env.current = 'release';
     console.log(env.get('baseUrl')); // 'https://api.api.demo.com'
 ```
+
+## ChangeLog
+
+### 0.2.0
+ing...
+
+
+### 0.0.3
+
+1. 支持基本的参数配置

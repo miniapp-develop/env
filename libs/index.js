@@ -2,7 +2,7 @@ const DEV = 'develop';
 const TRIAL = 'trial';
 const RELEASE = 'release';
 
-const {miniProgram, plugin = {}} = wx.getAccountInfoSync();
+const { miniProgram, plugin = {} } = wx.getAccountInfoSync();
 if (!miniProgram.envVersion) {
     if (typeof __wxConfig === 'object') {
         miniProgram.envVersion = __wxConfig.envVersion || RELEASE;
@@ -45,13 +45,13 @@ const defaultEnv = {
     },
     register(envName) {
         if (CTX[envName]) {
-            console.warn(`env:${envName} already exists!`)
+            console.warn(`env:${envName} already exists!`);
             return this;
         }
         CTX[envName] = {};
         this[envName] = function () {
             return _attr.call(this, envName, ...arguments);
-        }
+        };
         return this;
     },
     get(key, env = this.current) {
@@ -62,7 +62,7 @@ const defaultEnv = {
     },
     initApp(opt = {}) {
         if (!opt.query) {
-            return
+            return;
         }
         if (opt.query.env) {
             this.current = opt.query.env;

@@ -8,3 +8,6 @@ sitemap.json
 .idea
 *.iml
 assets
+sample
+.eslintrc.js
+.prettierrc.json
