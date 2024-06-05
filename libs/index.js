@@ -29,6 +29,11 @@ function _attr(env, arg1, arg2) {
 
 let __env = miniProgram.envVersion;
 
+const launchOptions = wx.getLaunchOptionsSync();
+if (launchOptions.query && launchOptions.query.env) {
+    __env = launchOptions.query.env;
+}
+
 const defaultEnv = {
     get current() {
         return __env;
@@ -60,12 +65,11 @@ const defaultEnv = {
     set(key, value, env = this.current) {
         return _attr.call(this, env, ...arguments);
     },
-    initApp(opt = {}) {
-        if (!opt.query) {
-            return;
-        }
-        if (opt.query.env) {
-            this.current = opt.query.env;
+    mount(host, name = 'env') {
+        if (host) {
+            host[name] = this;
+        } else {
+            globalThis[name] = this;
         }
     }
 };

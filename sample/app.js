@@ -1,7 +1,4 @@
-const env = require('@mini-dev/env');
-
+require('@mini-dev/env').mount();
 App({
-    onLaunch(opt) {
-        env.initApp(opt);
-    }
+    onLaunch(opt) {}
 });

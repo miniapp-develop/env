@@ -48,7 +48,26 @@
     "projectname": "env",
     "simulatorType": "wechat",
     "simulatorPluginLibVersion": {},
-    "condition": {},
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "env=trial",
+                    "pathName": "pages/index/index",
+                    "query": "env=trial",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "env=release",
+                    "pathName": "pages/index/index",
+                    "query": "env=release",
+                    "launchMode": "default",
+                    "scene": null
+                }
+            ]
+        }
+    },
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
