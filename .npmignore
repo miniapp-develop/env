@@ -10,4 +10,5 @@ sitemap.json
 assets
 sample
 .eslintrc.js
+.eslintrc.cjs
 .prettierrc.json
