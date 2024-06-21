@@ -19,7 +19,11 @@
         "jest": "^29.7.0"
     },
     "keywords": [
-        "miniapp"
+        "miniapp",
+        "微信",
+        "小程序",
+        "env",
+        "环境变量"
     ],
     "author": "xesam",
     "license": "ISC"
