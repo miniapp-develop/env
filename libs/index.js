@@ -5,42 +5,40 @@ const RELEASE = 'release';
 const { miniProgram, plugin = {} } = wx.getAccountInfoSync();
 if (!miniProgram.envVersion) {
     if (typeof __wxConfig === 'object') {
+        console.info('__wxConfig is available');
         miniProgram.envVersion = __wxConfig.envVersion || RELEASE;
-    } else {
-        console.warn('__wxConfig is unknown');
-        miniProgram.envVersion = RELEASE;
     }
 }
 
-let CTX = {};
+let _env_version = miniProgram.envVersion;
+
+const launchOptions = wx.getLaunchOptionsSync();
+if (launchOptions.query && launchOptions.query.env) {
+    _env_version = launchOptions.query.env;
+}
+
+let _CTX = {};
 
 function _attr(env, arg1, arg2) {
     if (arguments.length === 0) {
         return {};
     } else if (arguments.length === 1) {
-        return CTX[env];
+        return _CTX[env];
     } else if (arguments.length === 2) {
-        return CTX[env][arg1];
+        return _CTX[env][arg1];
     } else {
-        CTX[env][arg1] = arg2;
+        _CTX[env][arg1] = arg2;
         return this;
     }
 }
 
-let __env = miniProgram.envVersion;
-
-const launchOptions = wx.getLaunchOptionsSync();
-if (launchOptions.query && launchOptions.query.env) {
-    __env = launchOptions.query.env;
-}
-
 const defaultEnv = {
     get current() {
-        return __env;
+        return _env_version;
     },
     set current(value) {
-        __env = value;
-        return __env;
+        _env_version = value;
+        return _env_version;
     },
     get miniProgram() {
         return miniProgram;
@@ -49,27 +47,27 @@ const defaultEnv = {
         return plugin;
     },
     register(envName) {
-        if (CTX[envName]) {
+        if (_CTX[envName]) {
             console.warn(`env:${envName} already exists!`);
             return this;
         }
-        CTX[envName] = {};
-        this[envName] = function () {
+        _CTX[envName] = {};
+        this[envName] = function() {
             return _attr.call(this, envName, ...arguments);
         };
         return this;
     },
-    get(key, env = this.current) {
-        return this[env].apply(this, Array.prototype.slice.call(arguments, 0, 1));
+    get(key, envName = this.current) {
+        return this[envName].apply(this, Array.prototype.slice.call(arguments, 0, 1));
     },
-    set(key, value, env = this.current) {
-        return _attr.call(this, env, ...arguments);
+    set(key, value, envName = this.current) {
+        return _attr.call(this, envName, ...arguments);
     },
-    mount(host, name = 'env') {
+    mount(host, key = 'env') {
         if (host) {
-            host[name] = this;
+            host[key] = this;
         } else {
-            globalThis[name] = this;
+            globalThis[key] = this;
         }
     }
 };
