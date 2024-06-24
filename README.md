@@ -129,6 +129,10 @@ console.log(env.stage('baseUrl')); // 'https://stage.api.demo.com'
 
 ## ChangeLog
 
+### 0.1.1
+
+1. 移除多余的依赖项；
+
 ### 0.1.0
 
 1. 支持 mount 到全局或者指定对象（比如 app）上；

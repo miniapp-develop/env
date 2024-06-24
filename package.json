@@ -1,6 +1,6 @@
 {
     "name": "@mini-dev/env",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "miniapp env config",
     "miniprogram": "libs",
     "main": "libs/index.js",
@@ -15,7 +15,7 @@
         "url": "https://github.com/miniapp-develop/env"
     },
     "homepage": "https://github.com/miniapp-develop/env",
-    "dependencies": {
+    "devDependencies": {
         "jest": "^29.7.0"
     },
     "keywords": [
